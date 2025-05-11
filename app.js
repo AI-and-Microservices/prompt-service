@@ -33,7 +33,7 @@ app.use(responseMiddleware);
 
 const apiPrefix = `/${process.env.SERVICE_NAME}`;
 app.use(apiPrefix, authMiddleware, authRoutes);
-app.use(`${apiPrefix}/admin`, authorizeMiddleware('admin'), adminRoutes);
+app.use(`${apiPrefix}/admin`, authMiddleware, authorizeMiddleware('admin'), adminRoutes);
 app.use('/internal', crossServiceMiddleware, crossServiceRoutes);
 
 // error handling

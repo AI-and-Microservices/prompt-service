@@ -37,12 +37,13 @@ exports.createPrompt = async (req, res) => {
     referenceId = '',
     content = '',
     isPublic = false,
-    userId = null
   } = req.getAllParams();
+  const userId = req.user.id;
 
   if (!name) throw new AppError('Prompt name is required', 400, 'MISSING_NAME');
   if (!type) throw new AppError('Prompt type is required', 400, 'MISSING_TYPE');
   if (!content) throw new AppError('Prompt content is required', 400, 'MISSING_CONTENT');
+  if (!userId) throw new AppError('User ID is required', 400, 'MISSING_USER_ID');
 
   const prompt = new Prompt({
     name,

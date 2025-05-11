@@ -1,6 +1,7 @@
 module.exports = function authorizeRoles(...allowedRoles) {
     return (req, res, next) => {
       const userRoles = req?.user?.roles;
+      console.log('userRoles', userRoles);
   
       if (!userRoles || !Array.isArray(userRoles)) {
         return res.error('Access denied. No roles found.', 403);
